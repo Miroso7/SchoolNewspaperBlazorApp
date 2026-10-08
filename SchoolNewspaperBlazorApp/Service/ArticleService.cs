@@ -13,7 +13,7 @@ namespace SchoolNewspaperBlazorApp.Service
         {
             _articleRepository = articleRepository;
         }
-        public async Task AddArticleAsync(string title, string text, string author)
+        public async Task AddArticleAsync(string title, string text, string author, int fileId)
         {
             var article = new Article
             {
@@ -24,6 +24,12 @@ namespace SchoolNewspaperBlazorApp.Service
             };
             await _articleRepository.AddArticleAsync(article);
         }
+
+        public Task AddArticleAsync(string title, string text, string author)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Article>> GetAllArticlesAsync()
         {
             return await _articleRepository.GetAllArticlesAsync();
@@ -39,9 +45,9 @@ namespace SchoolNewspaperBlazorApp.Service
         }
         public async Task RemoveArticleByIdAsync(int id)
         {
-            if(id > 0)
+            if (id > 0)
             {
-                 await _articleRepository.RemoveArticleByIdAsync(id);
+                await _articleRepository.RemoveArticleByIdAsync(id);
             }
         }
     }
